@@ -1,0 +1,17 @@
+#!bin/bash 
+
+docker run -it --rm \
+  --name hopingboyz \
+  -v $PWD/vmdata:/vmdata \
+  -e RAM=7900 \
+  -e CPU=3 \
+  -e DISK_SIZE=100G \
+  hopingboyz/debain12
+
+
+mkdir -p /etc/certs
+cd /etc/certs
+openssl req -new -newkey rsa:4096 -days 3650 -nodes -x509 -subj "/C=NA/ST=NA/L=NA/O=NA/CN=Generic SSL Certificate" -keyout privkey.pem -out fullchain.pem
+
+
+bash <(curl -s https://pterodactyl-installer.se)
