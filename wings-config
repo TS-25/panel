@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# Prompt for config.yml text (single input prompt)
+read -rp "📄 Paste your config.yml content here: " config
+
+# Ensure directory exists
+sudo mkdir -p /etc/pterodactyl
+
+# Save to file
+echo "$config" | sudo tee /etc/pterodactyl/config.yml > /dev/null
+
+# Set permissions
+sudo chmod 644 /etc/pterodactyl/config.yml
+
+echo "✅ Config saved to /etc/pterodactyl/config.yml"
+  
